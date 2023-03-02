@@ -2,8 +2,8 @@ import React from "react";
 
 type Props = {};
 
-const routes = (props: Props) => {
-  return <div>routes</div>;
+const Routes = (props: Props) => {
+  return <div>Routes</div>;
 };
 
-export default routes;
+export default Routes;
