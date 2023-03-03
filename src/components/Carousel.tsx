@@ -6,7 +6,7 @@ import { GetImage } from '../redux/Actions/Actions'
 const Carousel = () => {
     const dispatch = useDispatch()
     const image = useSelector((store: any) => store.reducer.image)
-  
+
 
     const carousel = (e: any) => {
         dispatch(GetImage(e.target.src))
