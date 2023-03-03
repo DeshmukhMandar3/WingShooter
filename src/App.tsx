@@ -1,12 +1,13 @@
 import React from "react";
-import logo from "./logo.svg";
+
 import "./css/App.css";
-import Routes from "./routes/routes";
+
+import Gamepage from "./pages/Gamepage";
 
 function App() {
   return (
     <div className="App">
-      <Routes />
+      <Gamepage />
     </div>
   );
 }
