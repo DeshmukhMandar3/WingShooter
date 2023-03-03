@@ -1,0 +1,82 @@
+.duck {
+  cursor: crosshair;
+  z-index: 2;
+}
+
+.duckspace {
+  display: block;
+  width: 100%;
+  height: 500px;
+  border: solid red;
+  color: black;
+}
+
+input + label {
+  position: absolute;
+  left: -100px;
+  z-index: 10;
+  width: 35px;
+  display: block;
+  transform: translate(-50%, -50%);
+  background: url("https://64.media.tumblr.com/5dfe182158ff3e4e4f52895d740d9f17/7ead92638a157be6-9c/s640x960/434464a0ecd4dc24fae8f055dab38d27a6eb2c58.pnj");
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+input:checked + label {
+  opacity: 0;
+  transition: 0.5s;
+  transform: rotate(120deg);
+  transform-origin: 60%;
+  z-index: -5;
+}
+
+@keyframes duckfly {
+  0% {
+    left: 150%;
+    top: 10%;
+  }
+  25% {
+    left: 80%;
+    top: 50%;
+  }
+  50% {
+    left: 50%;
+    top: 30%;
+  }
+  75% {
+    left: 20%;
+    top: 20%;
+  }
+  85% {
+    left: 20%;
+    top: 20%;
+  }
+  100% {
+    left: -10%;
+    top: 60%;
+  }
+}
+
+.duck:nth-last-of-type(1) {
+  animation: duckfly 15s linear 1s;
+}
+.duck:nth-last-of-type(2) {
+  animation: duckfly 10s linear 2s;
+}
+.duck:nth-last-of-type(3) {
+  animation: duckfly 8s linear 1s;
+}
+.duck:nth-last-of-type(4) {
+  animation: duckfly 18s linear 3s;
+}
+.duck:nth-last-of-type(5) {
+  animation: duckfly 6s linear 1s;
+}
+.duck:nth-last-of-type(6) {
+  animation: duckfly 8s linear 5s;
+}
+
+input {
+  display: none;
+}
