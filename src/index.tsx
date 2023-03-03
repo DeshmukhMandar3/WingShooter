@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux/es/exports";
 import store from "./redux/Store";
-import { ChakraProvider } from "@chakra-ui/react/dist/chakra-provider";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
