@@ -26,7 +26,7 @@ function Map1() {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  console.log(windowSize);
+  // console.log(windowSize);
 
   // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [bullets, setBullets] = useState<
@@ -35,7 +35,7 @@ function Map1() {
       velocity: { x: number; y: number };
     }>
   >([]);
-  console.log(bullets);
+  // console.log(bullets);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -85,7 +85,6 @@ function Map1() {
       handleShoot(event);
     } else {
       setReload(true);
-      console.log("wait");
     }
   }
 
@@ -104,7 +103,7 @@ function Map1() {
     // const angleDegrees = angle * (180 / Math.PI);
 
     const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    console.log(distance);
+    // console.log(distance);
 
     // ... create new bullet with angle and distance
     const bulletVelocity = 15; // set the bullet's speed
