@@ -7,7 +7,7 @@ import Player from "./Player";
 import Ducks from "./Ducks";
 import { RootState } from "../redux/Store";
 import { useSelector } from "react-redux";
-import Thanos from "./enemy/thanos";
+import Enemy from "./enemy/enemy";
 
 function CharacterSide() {
   const [gameOver, setGameOver] = useState(false);
@@ -46,6 +46,8 @@ function CharacterSide() {
   useEffect(() => {
     for (let x = playerPosition.x - 65; x >= playerPosition.x - 80; x--) {
       if (enemyPosition.x === x && enemyPosition.y === playerPosition.y) {
+        console.log("collide");
+        handleSound(2);
         setGameOver(true);
       }
     }
@@ -69,9 +71,10 @@ function CharacterSide() {
   const soundList = [
     { src: "./gun_shot.mp3", label: "gun_shot" },
     { src: "./jet_sound.mp3", label: "jet_sound" },
+    { src: "./gameOver.mp3", label: "gameOver" },
   ];
 
-  const handleButtonClick = (index: number) => {
+  const handleSound = (index: number) => {
     setCurrentSoundIndex(index);
     if (audioRef.current) {
       audioRef.current.src = soundList[index].src;
@@ -109,7 +112,6 @@ function CharacterSide() {
   // useEffect to perform player movement
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      console.log(event.key);
       switch (event.key) {
         case "ArrowLeft": {
           if (playerPosition.x > 0) {
@@ -129,7 +131,7 @@ function CharacterSide() {
 
         case "j": {
           if (!isJumping) {
-            handleButtonClick(1);
+            handleSound(1);
             setIsJumping(true);
             let newPosition = playerPosition.y - 100;
             setPlayerPosition({ x: playerPosition.x, y: newPosition });
@@ -163,7 +165,7 @@ function CharacterSide() {
   };
 
   function handleMouseClick(event: React.MouseEvent<HTMLDivElement>) {
-    handleButtonClick(0);
+    handleSound(0);
     handleShoot(event);
   }
 
@@ -215,7 +217,7 @@ function CharacterSide() {
         <Ducks />
         <Box display={"flex"}>
           <Player x={playerPosition.x} y={playerPosition.y} />
-          <Thanos x={enemyPosition.x} y={enemyPosition.y} />
+          <Enemy x={enemyPosition.x} y={enemyPosition.y} />
         </Box>
         <audio ref={audioRef}>
           <source src={soundList[currentSoundIndex].src} type="audio/mpeg" />

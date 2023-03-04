@@ -10,21 +10,13 @@ interface ThanosProps {
 //   from { right: 0; }
 //   to { left: 0; }
 // `;
-const Thanos = ({ x, y }: ThanosProps) => {
-  // const [position, setPosition] = useState({ x, y });
-
-  // useEffect(() => {
-  //   console.log("Position:", position);
-  // }, [position]);
-
-  // const handlePositionChange = () => {
-  //   setPosition({ x, y });
-  // };
+const Enemy = ({ x, y }: ThanosProps) => {
   return (
     <Image
       // animation={`${moveLeft} 40s linear infinite`}
-      src="./thanos.gif"
+      src="./zombie.gif"
       alt="hero"
+      transform="scaleX(-1)"
       style={{
         position: "relative",
         left: x,
@@ -37,4 +29,4 @@ const Thanos = ({ x, y }: ThanosProps) => {
   );
 };
 
-export default Thanos;
+export default Enemy;
