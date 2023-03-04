@@ -18,8 +18,12 @@ const Scorecard = (props: Props) => {
         background: "red",
         justifyContent: "space-evenly",
         fontFamily: "cursive",
+        color: "white",
       }}
     >
+      <Text fontSize="2xl" fontWeight={"bold"} fontFamily={"fantasy"}>
+        WingShooter
+      </Text>
       <Text fontSize={"2xl"} fontWeight={"bold"}>
         User : {user_one_name}
       </Text>

@@ -7,6 +7,7 @@ import {
   ADD_USER_TWO_AVATAR,
   ADD_USER_TWO_POINTS,
   CURRENT_USER,
+  RESET_USER_SCORE,
 } from "../ActionTypes/ActionTypes";
 
 export const action = "action/type";
@@ -43,4 +44,8 @@ export const AddUserTwoPoints = () => (dispatch: any) => {
 
 export const currentUser = () => (dispatch: any) => {
   dispatch({ type: CURRENT_USER });
+};
+
+export const ResetPoints = () => (dispatch: any) => {
+  dispatch({ type: RESET_USER_SCORE });
 };

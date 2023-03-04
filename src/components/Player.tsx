@@ -20,7 +20,8 @@ const Player = ({ x, y }: PlayerProps) => {
         height: "100px",
         border: "none",
         transition: "top 0.5s",
-      }}></Image>
+      }}
+    ></Image>
   );
 };
 

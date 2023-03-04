@@ -1,3 +1,4 @@
+
 import { Box, Button, Flex, Heading, Image } from "@chakra-ui/react";
 
 import { Link } from "react-router-dom";
@@ -76,5 +77,6 @@ export const User = (props: Props) => {
         </Link>
       </Box>
     </Box>
+
   );
 };
