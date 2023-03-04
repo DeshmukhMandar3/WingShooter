@@ -6,6 +6,34 @@ import "../css/Landing.css";
 
 export const Landings = () => {
   return (
+
+<>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Provide Your Details</ModalHeader>
+          <ModalBody color="black">
+            <Input
+              placeholder="Enter Your Name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              isDisabled={name === ""}
+              colorScheme="blue"
+              mr={3}
+              onClick={handleAdd}
+            >
+              submit
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
     <Box
       bg={"GrayText"}
       className="body"
@@ -91,6 +119,7 @@ export const Landings = () => {
         </Link>
       </Box>
     </Box>
+    </>
 
   );
 };
