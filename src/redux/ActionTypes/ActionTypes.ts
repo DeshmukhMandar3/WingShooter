@@ -6,3 +6,4 @@ export const ADD_USER_TWO_AVATAR = "add/user/two/avatar";
 export const ADD_USER_ONE_POINTS = "add/user/one/points";
 export const ADD_USER_TWO_POINTS = "add/user/two/points";
 export const CURRENT_USER = "current/user";
+export const RESET_USER_SCORE = "score/reset";
