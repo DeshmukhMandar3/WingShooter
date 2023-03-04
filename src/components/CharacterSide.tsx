@@ -116,6 +116,7 @@ function CharacterSide() {
   // useEffect to perform player movement
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
+      console.log(event.key);
       switch (event.key) {
         case "ArrowLeft": {
           if (playerPosition.x > 0) {
@@ -133,7 +134,7 @@ function CharacterSide() {
           break;
         }
 
-        case "j": {
+        case "ArrowUp": {
           if (!isJumping) {
             handleSound(1);
             setIsJumping(true);
@@ -212,14 +213,12 @@ function CharacterSide() {
       bgPos={"center"}
       h="96vh"
       w="100%"
-      userSelect="none"
-    >
+      userSelect="none">
       <Box
         onClick={(event) => {
           handleMouseClick(event);
         }}
-        h="70vh"
-      >
+        h="70vh">
         <Ducks />
         <Box display={"flex"}>
           <Player x={playerPosition.x} y={playerPosition.y} />
