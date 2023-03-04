@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "../css/Game.css";
 import { RootState } from "../redux/Store";
+import CharacterSide from "./CharacterSide";
 
 type Props = {};
 
@@ -14,8 +15,9 @@ const Game = (props: Props) => {
       className="outer"
       style={{
         backgroundImage: `url(${background_image})`,
-      }}
-    ></div>
+      }}>
+      {/* <CharacterSide /> */}
+    </div>
   );
 };
 
