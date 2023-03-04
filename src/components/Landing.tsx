@@ -62,7 +62,7 @@ export const Landings = () => {
       </Modal>
 
       <Box
-        bg={"GrayText"}
+        bg={"#4c4b82"}
         className="body"
         minH="100vh"
         display="grid"

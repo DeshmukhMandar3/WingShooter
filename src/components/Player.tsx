@@ -1,5 +1,7 @@
 import React from "react";
 import { Box, Image } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/Store";
 
 interface PlayerProps {
   x: number;
@@ -8,9 +10,11 @@ interface PlayerProps {
 }
 
 const Player = ({ x, y }: PlayerProps) => {
+  const state = useSelector((state: RootState) => state.UserManager);
+  const { user_one_avatar } = state;
   return (
     <Image
-      src="./hero.gif"
+      src={user_one_avatar}
       alt="hero"
       style={{
         position: "relative",

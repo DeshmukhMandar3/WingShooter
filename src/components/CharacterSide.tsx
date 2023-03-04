@@ -8,6 +8,8 @@ import Ducks from "./Ducks";
 import { RootState } from "../redux/Store";
 import { useSelector } from "react-redux";
 import Enemy from "./enemy/enemy";
+import { useAppDispatch } from "../redux/app.hooks";
+import { GameOver } from "../redux/Actions/Actions";
 
 function CharacterSide() {
   const [gameOver, setGameOver] = useState(false);
@@ -15,6 +17,8 @@ function CharacterSide() {
   // get map(background) from redux
   const state = useSelector((state: RootState) => state.UserManager);
   const { background_image } = state;
+
+  const dispatch = useAppDispatch();
 
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -49,11 +53,11 @@ function CharacterSide() {
         console.log("collide");
         handleSound(2);
         setGameOver(true);
+        dispatch(GameOver());
       }
     }
 
     if (enemyPosition.x <= 0) {
-      console.log("in");
       setEnemyPosition({
         x: windowSize.width - 250,
         y: windowSize.height - 160,
@@ -208,12 +212,14 @@ function CharacterSide() {
       bgPos={"center"}
       h="96vh"
       w="100%"
-      userSelect="none">
+      userSelect="none"
+    >
       <Box
         onClick={(event) => {
           handleMouseClick(event);
         }}
-        h="70vh">
+        h="70vh"
+      >
         <Ducks />
         <Box display={"flex"}>
           <Player x={playerPosition.x} y={playerPosition.y} />

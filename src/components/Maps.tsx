@@ -2,27 +2,34 @@ import React, { useState } from "react";
 // import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { Box, Flex, IconButton, Image } from "@chakra-ui/react";
+import { useAppDispatch } from "../redux/app.hooks";
+import { AddBackground } from "../redux/Actions/Actions";
 
 const images = [
   {
     id: 1,
-    url: "bg.jpg",
+    url: "https://64.media.tumblr.com/e2fae2d22c00f60903c0e27f642e5c31/8cc5a7f4e87cb826-8d/s1280x1920/8a9f05a5f25b87cf3e1cbc962dd7e08924184ad5.jpg",
     alt: "Image 1",
   },
   {
     id: 2,
-    url: "https://media.istockphoto.com/id/1359619252/vector/green-meadow-with-white-clouds-summer-green-view-landscape-background-illustration.jpg?s=612x612&w=0&k=20&c=YggMbY3s0TLrIWpzU0fRj0tgc2JrLZti9-3YLnJi5EU=",
+    url: "https://64.media.tumblr.com/b116c0fd6ab60e05bbdf9de7d3449fde/c94348603ffd26e3-ae/s1280x1920/4cb23d31a04b427f787e4f7048318f806c5f382e.jpg",
     alt: "Image 2",
   },
   {
     id: 3,
-    url: "https://via.placeholder.com/150x150?text=Image+3",
+    url: "https://64.media.tumblr.com/dd938982174091e1bab9e970fae42292/4c91eb5bbafb2fd2-f7/s1280x1920/82640ef9eca346d716a70ca9dc97849bf5af9a5b.jpg",
     alt: "Image 3",
   },
 ];
 
 const Maps = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const dispatch = useAppDispatch();
+
+  React.useEffect(() => {
+    dispatch(AddBackground(images[currentIndex].url));
+  }, [currentIndex]);
 
   const handlePrevClick = () => {
     setCurrentIndex((prevIndex) =>
