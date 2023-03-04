@@ -7,6 +7,7 @@ import {
   ADD_USER_TWO_AVATAR,
   ADD_USER_TWO_POINTS,
   CURRENT_USER,
+  RESET_USER_SCORE,
 } from "../ActionTypes/ActionTypes";
 
 type actionType =
@@ -17,7 +18,8 @@ type actionType =
   | { type: "add/user/one/points"; payload: undefined }
   | { type: "add/user/two/points"; payload: undefined }
   | { type: "add/background"; payload: string }
-  | { type: "current/user"; payload: undefined };
+  | { type: "current/user"; payload: undefined }
+  | { type: "score/reset"; payload: undefined };
 
 export interface StateType {
   user_one_name: string;
@@ -63,6 +65,8 @@ export const Reducer = (
       return { ...state, user_two_points: state.user_two_points + 1 };
     case CURRENT_USER:
       return { ...state, current_user: !state.current_user };
+    case RESET_USER_SCORE:
+      return { ...state, user_one_points: 0 };
     default:
       return state;
   }

@@ -100,13 +100,13 @@ input:checked + label {
   animation: duckfly 18s linear 8s;
 }
 .duck:nth-last-of-type(4) {
-  animation: duckfly2 25s linear 1s;
+  animation: duckfly2 4s linear 1s;
 }
 .duck:nth-last-of-type(5) {
-  animation: duckfly 15s linear 1s;
+  animation: duckfly 10s linear 5s;
 }
 .duck:nth-last-of-type(6) {
-  animation: duckfly 15s linear 6s;
+  animation: duckfly2 6s linear 16s;
 }
 
 .duck:nth-last-of-type(7) {
@@ -121,6 +121,6 @@ input:checked + label {
   animation: duckfly2 15s linear 5s;
 }
 
-input {
+.checkbox {
   display: none;
 }
