@@ -31,7 +31,7 @@ export interface StateType {
 }
 
 const initialState: StateType = {
-  user_one_name: "",
+  user_one_name: "IronMan",
   user_two_name: "",
   background_image:
     "https://media.istockphoto.com/id/1359619252/vector/green-meadow-with-white-clouds-summer-green-view-landscape-background-illustration.jpg?s=612x612&w=0&k=20&c=YggMbY3s0TLrIWpzU0fRj0tgc2JrLZti9-3YLnJi5EU=",

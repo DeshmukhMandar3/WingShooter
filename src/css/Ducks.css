@@ -1,13 +1,18 @@
 .duck {
   cursor: crosshair;
   z-index: 2;
+  width: 6%;
+}
+
+.duck2 {
+  cursor: crosshair;
+  z-index: 2;
+  width: 6%;
 }
 
 .duckspace {
   display: block;
   width: 100%;
-
-  border: solid red;
   color: black;
 }
 
@@ -34,7 +39,7 @@ input:checked + label {
 @keyframes duckfly {
   0% {
     left: 150%;
-    top: 10%;
+    top: 15%;
   }
   25% {
     left: 80%;
@@ -58,23 +63,62 @@ input:checked + label {
   }
 }
 
+@keyframes duckfly2 {
+  0% {
+    left: 140%;
+    top: 15%;
+  }
+  25% {
+    left: 80%;
+    top: 50%;
+  }
+  50% {
+    left: 50%;
+    top: 20%;
+  }
+  75% {
+    left: 30%;
+    top: 50%;
+  }
+  85% {
+    left: 20%;
+    top: 15%;
+  }
+  100% {
+    left: -10%;
+    top: 50%;
+  }
+}
+
 .duck:nth-last-of-type(1) {
   animation: duckfly 15s linear 1s;
 }
 .duck:nth-last-of-type(2) {
-  animation: duckfly 10s linear 2s;
+  animation: duckfly2 15s linear 2s;
 }
 .duck:nth-last-of-type(3) {
-  animation: duckfly 8s linear 1s;
+  animation: duckfly 18s linear 8s;
 }
 .duck:nth-last-of-type(4) {
-  animation: duckfly 18s linear 3s;
+  animation: duckfly2 25s linear 1s;
 }
 .duck:nth-last-of-type(5) {
-  animation: duckfly 6s linear 1s;
+  animation: duckfly 15s linear 1s;
 }
 .duck:nth-last-of-type(6) {
-  animation: duckfly 8s linear 5s;
+  animation: duckfly 15s linear 6s;
+}
+
+.duck:nth-last-of-type(7) {
+  animation: duckfly2 18s linear 5s;
+}
+
+.duck:nth-last-of-type(8) {
+  animation: duckfly2 13s linear 2s;
+}
+
+.duck:nth-last-of-type(9) {
+  animation: duckfly2 15s linear 5s;
 }
 
 input {

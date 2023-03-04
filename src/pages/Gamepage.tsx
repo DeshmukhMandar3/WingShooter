@@ -7,9 +7,8 @@ import Scorecard from "../components/Scorecard";
 const Gamepage = () => {
   return (
     <div>
-      <Game />
-      <Ducks />
       <Scorecard />
+      <Game />
       <CharacterSide />
     </div>
   );
