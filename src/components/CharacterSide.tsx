@@ -7,8 +7,11 @@ import Player from "./Player";
 import Ducks from "./Ducks";
 import { RootState } from "../redux/Store";
 import { useSelector } from "react-redux";
+import Thanos from "./enemy/thanos";
 
 function CharacterSide() {
+  const [gameOver, setGameOver] = useState(false);
+
   // get map(background) from redux
   const state = useSelector((state: RootState) => state.UserManager);
   const { background_image } = state;
@@ -19,9 +22,43 @@ function CharacterSide() {
   });
 
   const [playerPosition, setPlayerPosition] = useState({
-    x: (windowSize.width - 130) / 2,
+    x: Math.floor((windowSize.width - 130) / 2),
     y: windowSize.height - 160,
   });
+
+  // enemy position
+  const [enemyPosition, setEnemyPosition] = useState({
+    x: windowSize.width - 250,
+    y: windowSize.height - 160,
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setEnemyPosition((prevPosition) => ({
+        ...prevPosition,
+        x: prevPosition.x - 1,
+      }));
+    }, 20);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    for (let x = playerPosition.x - 65; x >= playerPosition.x - 80; x--) {
+      if (enemyPosition.x === x && enemyPosition.y === playerPosition.y) {
+        setGameOver(true);
+      }
+    }
+
+    if (enemyPosition.x <= 0) {
+      console.log("in");
+      setEnemyPosition({
+        x: windowSize.width - 250,
+        y: windowSize.height - 160,
+      });
+    }
+  }, [enemyPosition.x]);
+  // enemy position
 
   const [isJumping, setIsJumping] = useState(false);
   const [currentSoundIndex, setCurrentSoundIndex] = useState(0);
@@ -54,7 +91,7 @@ function CharacterSide() {
     };
 
     setPlayerPosition({
-      x: (windowSize.width - 130) / 2,
+      x: Math.floor((windowSize.width - 130) / 2),
       y: windowSize.height - 160,
     });
     window.addEventListener("resize", handleResize);
@@ -72,6 +109,7 @@ function CharacterSide() {
   // useEffect to perform player movement
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
+      console.log(event.key);
       switch (event.key) {
         case "ArrowLeft": {
           if (playerPosition.x > 0) {
@@ -93,16 +131,16 @@ function CharacterSide() {
           if (!isJumping) {
             handleButtonClick(1);
             setIsJumping(true);
-            let newPosition = playerPosition.y - 40;
+            let newPosition = playerPosition.y - 100;
             setPlayerPosition({ x: playerPosition.x, y: newPosition });
 
             setTimeout(() => {
               setPlayerPosition({
                 x: playerPosition.x,
-                y: newPosition + 40,
+                y: newPosition + 100,
               });
               setIsJumping(false);
-            }, 500);
+            }, 1000);
           }
           break;
         }
@@ -121,9 +159,6 @@ function CharacterSide() {
 
   // bullet get out of screen need to reset bullet array
   const handleBulletFinished = (index: number) => {
-    // if (audioRef.current) {
-    //   audioRef.current.pause();
-    // }
     setBullets([]);
   };
 
@@ -176,10 +211,12 @@ function CharacterSide() {
         onClick={(event) => {
           handleMouseClick(event);
         }}
-        h="70vh"
-        border={"2px solid black"}>
+        h="70vh">
         <Ducks />
-        <Player x={playerPosition.x} y={playerPosition.y} />
+        <Box display={"flex"}>
+          <Player x={playerPosition.x} y={playerPosition.y} />
+          <Thanos x={enemyPosition.x} y={enemyPosition.y} />
+        </Box>
         <audio ref={audioRef}>
           <source src={soundList[currentSoundIndex].src} type="audio/mpeg" />
         </audio>
