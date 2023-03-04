@@ -7,6 +7,7 @@ import {
   ADD_USER_TWO_AVATAR,
   ADD_USER_TWO_POINTS,
   CURRENT_USER,
+  GAME_OVER,
   GET_FROM_DATABASE,
   RESET_USER_SCORE,
 } from "../ActionTypes/ActionTypes";
@@ -63,4 +64,8 @@ export const GetFromDatabase = () => async (dispatch: any) => {
   let data = await GetFromDatabaseAPI();
   console.log(data.data);
   dispatch({ type: GET_FROM_DATABASE, payload: data.data });
+};
+
+export const GameOver = () => async (dispatch: any) => {
+  dispatch({ type: GAME_OVER });
 };

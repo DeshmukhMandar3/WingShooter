@@ -8,3 +8,4 @@ export const ADD_USER_TWO_POINTS = "add/user/two/points";
 export const CURRENT_USER = "current/user";
 export const RESET_USER_SCORE = "score/reset";
 export const GET_FROM_DATABASE = "get/points/database";
+export const GAME_OVER = "game/over";

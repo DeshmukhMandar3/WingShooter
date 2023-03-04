@@ -58,7 +58,7 @@ const Ducks = (props: Props) => {
   }, []);
   const dispatch = useAppDispatch();
   const state = useSelector((state: RootState) => state.UserManager);
-  const { user_one_points, user_one_name, leaderboard } = state;
+  const { user_one_points, user_one_name, leaderboard, game_over } = state;
 
   const handleChange = () => {
     dispatch(AddUserOnePoints());
@@ -108,6 +108,13 @@ const Ducks = (props: Props) => {
       setFlag(false);
     }
   }, [isEndOpen]);
+
+  React.useEffect(() => {
+    if (game_over) {
+      onEndOpen();
+      dispatch(AddToDatabase(user_one_name, user_one_points));
+    }
+  }, [game_over]);
 
   console.log(user_one_points);
 

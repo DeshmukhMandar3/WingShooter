@@ -7,6 +7,7 @@ import {
   ADD_USER_TWO_AVATAR,
   ADD_USER_TWO_POINTS,
   CURRENT_USER,
+  GAME_OVER,
   GET_FROM_DATABASE,
   RESET_USER_SCORE,
 } from "../ActionTypes/ActionTypes";
@@ -26,7 +27,8 @@ type actionType =
   | { type: "add/background"; payload: string }
   | { type: "current/user"; payload: undefined }
   | { type: "score/reset"; payload: undefined }
-  | { type: "get/points/database"; payload: leaderboardType[] };
+  | { type: "get/points/database"; payload: leaderboardType[] }
+  | { type: "game/over"; payload: undefined };
 
 export interface StateType {
   user_one_name: string;
@@ -38,6 +40,7 @@ export interface StateType {
   user_two_points: number;
   current_user: boolean;
   leaderboard: leaderboardType[];
+  game_over: boolean;
 }
 
 const initialState: StateType = {
@@ -45,12 +48,13 @@ const initialState: StateType = {
   user_two_name: "",
   background_image:
     "https://media.istockphoto.com/id/1359619252/vector/green-meadow-with-white-clouds-summer-green-view-landscape-background-illustration.jpg?s=612x612&w=0&k=20&c=YggMbY3s0TLrIWpzU0fRj0tgc2JrLZti9-3YLnJi5EU=",
-  user_one_avatar: "",
+  user_one_avatar: "hero.gif",
   user_two_avatar: "",
   user_one_points: 0,
   user_two_points: 0,
   current_user: false,
   leaderboard: [],
+  game_over: false,
 };
 
 export const Reducer = (
@@ -75,9 +79,11 @@ export const Reducer = (
     case CURRENT_USER:
       return { ...state, current_user: !state.current_user };
     case RESET_USER_SCORE:
-      return { ...state, user_one_points: 0 };
+      return { ...state, user_one_points: 0, game_over: false };
     case GET_FROM_DATABASE:
       return { ...state, leaderboard: action.payload };
+    case GAME_OVER:
+      return { ...state, game_over: true };
     default:
       return state;
   }
