@@ -58,7 +58,7 @@ export const Landings = () => {
         </ModalContent>
       </Modal>
       <div className="body">
-        <h1 style={{ marginRight: "1000px", color: "Red" }}>Ducks Hunting</h1>
+        <h1 style={{ marginRight: "1000px", color: "Red" }}>WingShooter</h1>
 
         <div className="birds">
           <div className="birds__hatdove">

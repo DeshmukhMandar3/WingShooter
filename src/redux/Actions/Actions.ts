@@ -7,8 +7,10 @@ import {
   ADD_USER_TWO_AVATAR,
   ADD_USER_TWO_POINTS,
   CURRENT_USER,
+  GET_FROM_DATABASE,
   RESET_USER_SCORE,
 } from "../ActionTypes/ActionTypes";
+import { AddToDatabaseAPI, GetFromDatabaseAPI } from "../Api/api";
 
 export const action = "action/type";
 
@@ -48,4 +50,17 @@ export const currentUser = () => (dispatch: any) => {
 
 export const ResetPoints = () => (dispatch: any) => {
   dispatch({ type: RESET_USER_SCORE });
+};
+
+export const AddToDatabase =
+  (name: string, points: number) => async (dispatch: any) => {
+    let data = await AddToDatabaseAPI({ name, points });
+    console.log(data);
+    dispatch(GetFromDatabase());
+  };
+
+export const GetFromDatabase = () => async (dispatch: any) => {
+  let data = await GetFromDatabaseAPI();
+  console.log(data.data);
+  dispatch({ type: GET_FROM_DATABASE, payload: data.data });
 };

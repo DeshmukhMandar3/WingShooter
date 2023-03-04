@@ -1,7 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "../css/Ducks.css";
-import { AddUserOnePoints, ResetPoints } from "../redux/Actions/Actions";
+import {
+  AddToDatabase,
+  AddUserOnePoints,
+  ResetPoints,
+} from "../redux/Actions/Actions";
 import { useAppDispatch } from "../redux/app.hooks";
 import { RootState } from "../redux/Store";
 import {
@@ -10,13 +14,20 @@ import {
   ModalOverlay,
   ModalHeader,
   ModalContent,
-  ModalCloseButton,
   ModalBody,
   ModalFooter,
   Button,
   Text,
   Box,
   Input,
+  Flex,
+  Table,
+  TableCaption,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
 } from "@chakra-ui/react";
 import flying from "../assets/flying.gif";
 import { useNavigate } from "react-router-dom";
@@ -25,14 +36,16 @@ type Props = {};
 
 const Ducks = (props: Props) => {
   const [time, setTime] = React.useState(0);
+  const [flag, setFlag] = React.useState(false);
 
   const intervalRef = React.useRef();
   React.useEffect(() => {
     const interval: any = setInterval(() => {
       setTime((time) => {
         if (time >= 25) {
-          onEndOpen();
           clearInterval(intervalRef.current);
+          setFlag(true);
+          onEndOpen();
         }
 
         return time + 1;
@@ -45,7 +58,7 @@ const Ducks = (props: Props) => {
   }, []);
   const dispatch = useAppDispatch();
   const state = useSelector((state: RootState) => state.UserManager);
-  const { user_one_points } = state;
+  const { user_one_points, user_one_name, leaderboard } = state;
 
   const handleChange = () => {
     dispatch(AddUserOnePoints());
@@ -68,6 +81,7 @@ const Ducks = (props: Props) => {
   React.useEffect(() => {
     if (user_one_points == 9) {
       clearInterval(intervalRef.current);
+      dispatch(AddToDatabase(user_one_name, user_one_points));
       onWinOpen();
     }
   }, [user_one_points]);
@@ -87,6 +101,13 @@ const Ducks = (props: Props) => {
     onWinClose();
     navigate("/user");
   }
+
+  React.useEffect(() => {
+    if (flag) {
+      dispatch(AddToDatabase(user_one_name, user_one_points));
+      setFlag(false);
+    }
+  }, [isEndOpen]);
 
   console.log(user_one_points);
 
@@ -185,13 +206,61 @@ const Ducks = (props: Props) => {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader fontFamily={"cursive"}>Game Over!</ModalHeader>
+            <ModalHeader fontFamily={"cursive"} textAlign={"center"}>
+              Game Over!
+            </ModalHeader>
 
             <ModalBody>
-              <Text fontFamily={"cursive"}>
+              <Text fontFamily={"cursive"} textAlign={"center"}>
                 You earned {user_one_points} points.
               </Text>
-              <Text fontFamily={"cursive"}>Better luck next time!</Text>
+              <Text fontFamily={"cursive"} textAlign={"center"}>
+                Better luck next time!
+              </Text>
+
+              <Box>
+                <Table variant="simple">
+                  <TableCaption placement="top" fontSize={"xl"}>
+                    LeaderBoard
+                  </TableCaption>
+                  <Thead>
+                    <Tr>
+                      <Th>Rank</Th>
+                      <Th>Name</Th>
+                      <Th isNumeric>Points</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    <Tr>
+                      <Td>1</Td>
+                      <Td>
+                        {leaderboard && leaderboard[0] && leaderboard[0].name}
+                      </Td>
+                      <Td isNumeric>
+                        {leaderboard && leaderboard[0] && leaderboard[0].points}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>2</Td>
+                      <Td>
+                        {leaderboard && leaderboard[1] && leaderboard[1].name}
+                      </Td>
+                      <Td isNumeric>
+                        {leaderboard && leaderboard[1] && leaderboard[1].points}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>3</Td>
+                      <Td>
+                        {leaderboard && leaderboard[2] && leaderboard[2].name}
+                      </Td>
+                      <Td isNumeric>
+                        {leaderboard && leaderboard[2] && leaderboard[2].points}
+                      </Td>
+                    </Tr>
+                  </Tbody>
+                </Table>
+              </Box>
             </ModalBody>
 
             <ModalFooter>
@@ -222,10 +291,57 @@ const Ducks = (props: Props) => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader fontFamily={"cursive"}>You Won!</ModalHeader>
+          <ModalHeader fontFamily={"cursive"} textAlign={"center"}>
+            You Won!
+          </ModalHeader>
 
           <ModalBody>
-            <Text fontFamily={"cursive"}>Winner Winner Duck Dinner!</Text>
+            <Text fontFamily={"cursive"} textAlign={"center"}>
+              Winner Winner Duck Dinner!
+            </Text>
+            <Box>
+              <Table variant="simple">
+                <TableCaption placement="top" fontSize={"xl"}>
+                  LeaderBoard
+                </TableCaption>
+                <Thead>
+                  <Tr>
+                    <Th>Rank</Th>
+                    <Th>Name</Th>
+                    <Th isNumeric>Points</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  <Tr>
+                    <Td>1</Td>
+                    <Td>
+                      {leaderboard && leaderboard[0] && leaderboard[0].name}
+                    </Td>
+                    <Td isNumeric>
+                      {leaderboard && leaderboard[0] && leaderboard[0].points}
+                    </Td>
+                  </Tr>
+                  <Tr>
+                    <Td>2</Td>
+                    <Td>
+                      {leaderboard && leaderboard[1] && leaderboard[1].name}
+                    </Td>
+                    <Td isNumeric>
+                      {leaderboard && leaderboard[1] && leaderboard[1].points}
+                    </Td>
+                  </Tr>
+                  <Tr>
+                    <Td>3</Td>
+                    <Td>
+                      {leaderboard && leaderboard[2] && leaderboard[2].name}
+                    </Td>
+                    <Td isNumeric>
+                      {leaderboard && leaderboard[2] && leaderboard[2].points}
+                    </Td>
+                  </Tr>
+                </Tbody>
+              </Table>
+            </Box>
           </ModalBody>
 
           <ModalFooter>

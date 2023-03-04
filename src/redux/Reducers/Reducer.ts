@@ -7,8 +7,14 @@ import {
   ADD_USER_TWO_AVATAR,
   ADD_USER_TWO_POINTS,
   CURRENT_USER,
+  GET_FROM_DATABASE,
   RESET_USER_SCORE,
 } from "../ActionTypes/ActionTypes";
+
+export interface leaderboardType {
+  name: string;
+  points: number;
+}
 
 type actionType =
   | { type: "add/user/one"; payload: string }
@@ -19,7 +25,8 @@ type actionType =
   | { type: "add/user/two/points"; payload: undefined }
   | { type: "add/background"; payload: string }
   | { type: "current/user"; payload: undefined }
-  | { type: "score/reset"; payload: undefined };
+  | { type: "score/reset"; payload: undefined }
+  | { type: "get/points/database"; payload: leaderboardType[] };
 
 export interface StateType {
   user_one_name: string;
@@ -30,6 +37,7 @@ export interface StateType {
   user_one_points: number;
   user_two_points: number;
   current_user: boolean;
+  leaderboard: leaderboardType[];
 }
 
 const initialState: StateType = {
@@ -42,6 +50,7 @@ const initialState: StateType = {
   user_one_points: 0,
   user_two_points: 0,
   current_user: false,
+  leaderboard: [],
 };
 
 export const Reducer = (
@@ -67,6 +76,8 @@ export const Reducer = (
       return { ...state, current_user: !state.current_user };
     case RESET_USER_SCORE:
       return { ...state, user_one_points: 0 };
+    case GET_FROM_DATABASE:
+      return { ...state, leaderboard: action.payload };
     default:
       return state;
   }
