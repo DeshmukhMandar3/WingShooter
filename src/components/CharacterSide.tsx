@@ -19,8 +19,8 @@ function CharacterSide() {
   });
 
   const [playerPosition, setPlayerPosition] = useState({
-    x: 50,
-    y: 100,
+    x: (windowSize.width - 130) / 2,
+    y: windowSize.height - 160,
   });
 
   const [isJumping, setIsJumping] = useState(false);
@@ -55,7 +55,7 @@ function CharacterSide() {
 
     setPlayerPosition({
       x: (windowSize.width - 130) / 2,
-      y: windowSize.height - 150,
+      y: windowSize.height - 160,
     });
     window.addEventListener("resize", handleResize);
 
