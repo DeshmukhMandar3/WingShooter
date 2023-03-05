@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
+import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { Box, Flex, IconButton, Image } from "@chakra-ui/react";
 import { useAppDispatch } from "../redux/app.hooks";
@@ -46,6 +46,7 @@ const Maps = () => {
   return (
     <Flex align="center" justify="center">
       <IconButton
+        bg="none"
         aria-label="Previous"
         icon={<ArrowLeftIcon />}
         onClick={handlePrevClick}
@@ -58,6 +59,7 @@ const Maps = () => {
         />
       </Box>
       <IconButton
+        bg="none"
         aria-label="Next"
         icon={<ArrowRightIcon />}
         onClick={handleNextClick}

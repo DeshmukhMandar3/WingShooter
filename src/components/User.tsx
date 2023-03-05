@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, grid, Heading, Image } from "@chakra-ui/react";
 
 import { Link } from "react-router-dom";
 import "../css/User.css";
@@ -29,21 +29,25 @@ export const User = (props: Props) => {
       <Box
         display="flex"
         justifyContent={"center"}
-        mt="10px"
-        mb={{ base: "5px", md: "20px" }}
-      >
+        pt="10px"
+        mb={{ base: "5px", md: "20px" }}>
         <Heading>Avatars</Heading>
       </Box>
 
       <Box
-        display={{ base: "grid", md: "flex" }}
-        gap="20px"
-        w={{ sm: "80%", md: "40%" }}
+        display="grid"
+        gridTemplateColumns={{
+          base: "40%",
+          sm: "repeat(2,1fr)",
+          md: "repeat(2,1fr)",
+        }}
+        justifyContent="center"
+        w={{ sm: "60%", md: "30%" }}
         m="auto"
-      >
-        <Box w="50%" m={"20px"}>
-          <Flex justifyContent="center">
-            <Image src="Ironman.png" alt="Hero" w="50%" />
+        mb="20px">
+        <Box m={"auto"}>
+          <Flex justifyContent="center" mb="5px">
+            <Image src="Ironman.png" alt="Hero" w="80%" />
           </Flex>
           <Flex justifyContent="center">
             {/* <button onClick={handleUser2}>Hero</button> */}
@@ -51,35 +55,33 @@ export const User = (props: Props) => {
               colorScheme="blue"
               size={"md"}
               w="50%"
-              bgColor={user_one_avatar == "hero.gif" ? "green" : "blue.400"}
-              isDisabled={user_one_avatar == "hero.gif"}
-              onClick={handleAvatar1}
-            >
-              Hero
+              bgColor={user_one_avatar === "hero.gif" ? "green" : "blue.400"}
+              isDisabled={user_one_avatar === "hero.gif"}
+              onClick={handleAvatar1}>
+              {user_one_avatar === "hero.gif" ? "Selected" : "Hero"}
             </Button>
           </Flex>
         </Box>
-        <Box w="50%" m={"auto"}>
-          <Flex justifyContent="center">
-            <Image src="Solider.jpg" alt="Solider" w="50%" />
+        <Box m={"auto"}>
+          <Flex justifyContent="center" mb="5px">
+            <Image src="Solider.jpg" alt="Solider" w="80%" />
           </Flex>
           <Flex justifyContent="center">
             <Button
               colorScheme="blue"
               size={"md"}
               w="50%"
-              bgColor={user_one_avatar == "army.gif" ? "green" : "blue.400"}
-              isDisabled={user_one_avatar == "army.gif"}
-              onClick={handleAvatar2}
-            >
-              Solider
+              bgColor={user_one_avatar === "army.gif" ? "green" : "blue.400"}
+              isDisabled={user_one_avatar === "army.gif"}
+              onClick={handleAvatar2}>
+              {user_one_avatar === "army.gif" ? "Selected" : " Solider"}
             </Button>
           </Flex>
         </Box>
       </Box>
 
       {/* carousel start */}
-      <Box w="80%" m={"auto"} mb={{ base: "0px", md: "50px" }}>
+      <Box w="80%" m={"auto"} mb={{ base: "50px", sm: "50px", md: "50px" }}>
         {/* <Carousel /> */}
         <Maps />
       </Box>
