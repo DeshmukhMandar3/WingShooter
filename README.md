@@ -1,46 +1,64 @@
-# Getting Started with Create React App
+## Hackathon Project- WingShooter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Collaborator->
+1. Mandar Deshmukh.
+2. Rajendra Patel.
+3. Rahul Singh.
 
-## Available Scripts
+## Tech-Stack->
 
-In the project directory, you can run:
+- #### For Frontend :-
+   - `HTML5`
+  - `CSS3`
+  - `JavaScript `
+   - `Redux`
+  - `ReactJS`
+  - `Typescript `
+   - `ES6 `
 
-### `npm start`
+- #### For Backend :-
+   - `NodeJS`
+   - `ExpressJS`
+   - `MongoDB `
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- #### For deploy database :- 
+   - `cyclic `
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- #### For Styling :-  
+   - `Chakra UI `
 
-### `npm test`
+- #### For live Project : -
+   - `Vercel`
+   
+  
+## Game->
+## Landing Page: <br/>
+User needs to Provide his name and click on proceed to select the Avatar and Theme.
+  
+  
+  <img width="960" alt="Landing Page" src="https://user-images.githubusercontent.com/112819017/222946077-d9b014fe-0463-426b-b892-20b3a7909ac6.png">
+  
+  
+## Avatar Page: <br/>
+User needs to select Avatar and Theme from the availble and Click on the Proceed to play the game.
+  
+  <img width="960" alt="Avatar" src="https://user-images.githubusercontent.com/112819017/222946300-7c03d47a-5a90-44ef-a802-d56b07adb6c0.png">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Play Game: <br/>
 
-### `npm run build`
+About Game --> User needs to Kill all 9 birds within given time period. Also Player needs to avoide contact with zombie by Jumping over.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Controls --> To move Player toward left and right use `<=` and `=>` arrow keys. And To jump use `Arrow Up` key. And To fire a bullet you need to `click` on the bird.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img width="960" alt="Game1" src="https://user-images.githubusercontent.com/112819017/222946586-6f9fa069-074a-4d93-ae1d-85cd4760cba0.png">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Finish Game: <br/>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+After game is finsihed. If player able to kill all nine birds and able to protect himself from zombie he will see `You Won!` modal. else Player will see `Better Luck Next Time!` modal. Both this Modals will have Leaderboard Data which is coming from Backend. By Clicking on `Try Again` in Modal player will be redirected to Avatar's page. and If player clicks on Exit he will be redirected to 'Home' Page.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img width="960" alt="LeaderBoard" src="https://user-images.githubusercontent.com/112819017/222946699-ba6fb152-67b1-4127-b442-b0cb2a1773e8.png">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
