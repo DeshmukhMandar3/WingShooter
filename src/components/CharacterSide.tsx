@@ -32,9 +32,12 @@ function CharacterSide() {
 
   // enemy position
   const [enemyPosition, setEnemyPosition] = useState({
-    x: windowSize.width - 250,
+    x: windowSize.width - 150,
     y: windowSize.height - 160,
   });
+  const [isJumping, setIsJumping] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [currentSoundIndex, setCurrentSoundIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -52,25 +55,22 @@ function CharacterSide() {
       if (enemyPosition.x === x && enemyPosition.y === playerPosition.y) {
         console.log("collide");
         handleSound(2);
+        handleSound(2);
         setGameOver(true);
         dispatch(GameOver());
       }
     }
 
-    if (enemyPosition.x <= 0) {
+    if (enemyPosition.x < -200) {
       setEnemyPosition({
-        x: windowSize.width - 250,
+        x: windowSize.width - 150,
         y: windowSize.height - 160,
       });
     }
   }, [enemyPosition.x]);
   // enemy position
 
-  const [isJumping, setIsJumping] = useState(false);
-  const [currentSoundIndex, setCurrentSoundIndex] = useState(0);
-
   // audio zone
-  const audioRef = useRef<HTMLAudioElement>(null);
 
   const soundList = [
     { src: "./gun_shot.mp3", label: "gun_shot" },
@@ -80,6 +80,7 @@ function CharacterSide() {
 
   const handleSound = (index: number) => {
     setCurrentSoundIndex(index);
+
     if (audioRef.current) {
       audioRef.current.src = soundList[index].src;
       audioRef.current.play();
@@ -116,6 +117,7 @@ function CharacterSide() {
   // useEffect to perform player movement
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
+      console.log(event.key);
       switch (event.key) {
         case "ArrowLeft": {
           if (playerPosition.x > 0) {
@@ -133,7 +135,7 @@ function CharacterSide() {
           break;
         }
 
-        case "j": {
+        case "ArrowUp": {
           if (!isJumping) {
             handleSound(1);
             setIsJumping(true);
@@ -204,7 +206,6 @@ function CharacterSide() {
 
   return (
     <Box
-      border={"2px solid red"}
       // bgImage dynamic using redux
       bgImage={`url(${background_image})`}
       // bgImage="./bg.jpg"
@@ -212,14 +213,12 @@ function CharacterSide() {
       bgPos={"center"}
       h="96vh"
       w="100%"
-      userSelect="none"
-    >
+      userSelect="none">
       <Box
         onClick={(event) => {
           handleMouseClick(event);
         }}
-        h="70vh"
-      >
+        h="70vh">
         <Ducks />
         <Box display={"flex"}>
           <Player x={playerPosition.x} y={playerPosition.y} />

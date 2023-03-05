@@ -47,7 +47,7 @@ const initialState: StateType = {
   user_one_name: "IronMan",
   user_two_name: "",
   background_image:
-    "https://media.istockphoto.com/id/1359619252/vector/green-meadow-with-white-clouds-summer-green-view-landscape-background-illustration.jpg?s=612x612&w=0&k=20&c=YggMbY3s0TLrIWpzU0fRj0tgc2JrLZti9-3YLnJi5EU=",
+    "https://64.media.tumblr.com/e2fae2d22c00f60903c0e27f642e5c31/8cc5a7f4e87cb826-8d/s1280x1920/8a9f05a5f25b87cf3e1cbc962dd7e08924184ad5.jpg",
   user_one_avatar: "hero.gif",
   user_two_avatar: "",
   user_one_points: 0,
